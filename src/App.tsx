@@ -1,4 +1,3 @@
-import GiftList, { Gift } from "./components/GiftList";
 import "./styles.css";
 
 export default function App() {
