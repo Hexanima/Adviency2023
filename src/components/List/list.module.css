@@ -1,7 +1,0 @@
-.list {
-  display: flex;
-  flex-direction: column;
-  font-family: "Roboto", sans-serif;
-  align-items: flex-start;
-  padding: 0 1rem;
-}
