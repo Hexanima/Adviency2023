@@ -1,9 +1,15 @@
-import "./styles.css";
+import "./App.scss";
+import { GiftProvider } from "./context/GiftProvider";
+import Home from "./pages/Home";
 
-export default function App() {
+function App() {
   return (
-    <div className="App">
-      <h1>Regalos:</h1>
-    </div>
+    <GiftProvider>
+      <div className="App">
+        <Home />
+      </div>
+    </GiftProvider>
   );
 }
+
+export default App;
