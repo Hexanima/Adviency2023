@@ -1,14 +1,10 @@
 import "./App.scss";
-import { GiftProvider } from "./context/GiftProvider";
-import Home from "./pages/Home";
 
 function App() {
   return (
-    <GiftProvider>
-      <div className="App">
-        <Home />
-      </div>
-    </GiftProvider>
+    <div className="App">
+      <h1>Regalos:</h1>
+    </div>
   );
 }
 
