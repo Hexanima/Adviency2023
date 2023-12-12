@@ -9,3 +9,4 @@
 - Debe verificarse que el input no este vacio y que el regalo no exista
 - Debe poder elegirse en el input la cantidad de un mismo regalo
 - Deben guardarse los regalos en localStorage
+- Debe poder ingresarse una URL de imagen junto al input de nombre para mostrar con el regalo
