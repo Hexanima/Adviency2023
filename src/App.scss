@@ -1,10 +1,86 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.Background {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: {
+    image: url("https://services.meteored.com/img/article/el-origen-del-arbol-de-navidad-y-su-relacion-con-el-solsticio-regalos-papa-noel-jesus-nochebuena-1702113256181_1280.jpeg");
+    size: cover;
+    position: center;
+  }
+  z-index: -5;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 8rem 0;
+  align-items: center;
+}
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: white;
+}
+
+.Input {
+  display: flex;
+  gap: 0.25rem;
+
+  * {
+    padding: 0.25rem;
+    border: 1px solid rgb(45, 45, 45);
+  }
+  button {
+    background-color: rgb(220, 20, 20);
+    color: white;
+    cursor: pointer;
+  }
+}
+
+.GiftList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style-type: none;
+  gap: 0.5rem;
+
+  li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      padding: 0.25rem;
+      border: 1px solid rgb(45, 45, 45);
+      background-color: rgb(220, 20, 20);
+      color: white;
+      cursor: pointer;
+    }
+  }
+  h5 {
+    align-self: center;
+  }
+}
+
+.Clearer {
+  width: 100%;
+  padding: 0.25rem;
+  border: 1px solid rgb(45, 45, 45);
+  background-color: rgb(220, 20, 20);
+  color: white;
+  cursor: pointer;
 }
