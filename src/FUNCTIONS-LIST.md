@@ -8,3 +8,4 @@
 - Debe haber un mensaje cuando la lista este vacia
 - Debe verificarse que el input no este vacio y que el regalo no exista
 - Debe poder elegirse en el input la cantidad de un mismo regalo
+- Deben guardarse los regalos en localStorage
