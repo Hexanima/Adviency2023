@@ -1,12 +1,15 @@
 import "./App.scss";
+import { GiftProvider } from "./context/GiftProvider";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Regalos:</h1>
-    </div>
-
-    /* ARRANCAR DIA 8 */
+    <GiftProvider>
+      <div className="Background"></div>
+      <div className="App">
+        <Home />
+      </div>
+    </GiftProvider>
   );
 }
 
