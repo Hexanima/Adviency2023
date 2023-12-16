@@ -1,10 +1,163 @@
+$red: rgb(220, 20, 20);
+$black: rgb(45, 45, 45);
+$green: rgb(50, 150, 50);
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+@mixin button($bgColor: $red, $p: 0.25rem) {
+  border: 1px solid $black;
+  background-color: $bgColor;
+  padding: $p;
+  cursor: pointer;
+  color: white;
+  border-radius: 0.25rem;
+}
+
+.Background {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  z-index: -5;
+  background: {
+    image: url("https://fotografias.larazon.es/clipping/cmsimages02/2023/11/08/261FCB39-7942-46E7-9EB5-429F43BC52EF/personas-que-adelantan-navidad-son-mas-felices-segun-estudio_98.jpg?crop=1600,900,x0,y0&width=1900&height=1069&optimize=low&format=webply");
+    size: cover;
+    position: center;
+  }
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $black;
+  padding: 2rem;
+  gap: 2rem;
+  background-color: $red;
+  color: white;
+}
+
+.Input {
+  @include button($bgColor: $green, $p: 0.5rem);
+}
+
+.InputForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+
+  input {
+    padding: 0.5rem;
+    border: 1px solid $black;
+    border-radius: 0.25rem;
+  }
+
+  .Text {
+  }
+
+  .mini {
+    display: flex;
+    gap: 1rem;
+
+    button {
+      @include button($bgColor: $green, $p: 0.5rem);
+    }
+  }
+}
+
+.List {
+  padding: 0.75rem;
+  background-color: white;
+  border: 1px solid $black;
+  color: $black;
+  border-radius: 0.25rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  ul {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    li {
+      width: 100%;
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+
+      p {
+        flex-grow: 1;
+        text-align: start;
+      }
+
+      span {
+        margin: 0 1rem;
+      }
+
+      .Open {
+        @include button($bgColor: $green);
+      }
+
+      .Delete {
+        @include button();
+      }
+    }
+  }
+}
+
+.Clearer {
+  width: 100%;
+  @include button($p: 0.5rem);
+}
+
+.ModalHandler {
+  position: sticky;
+  height: 100vh;
+  opacity: 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(0.5rem);
+  transition: all 0.375s ease;
+
+  .Frame {
+    position: relative;
+    padding: 3rem 1rem;
+    background-color: white;
+    border: 1px solid $black;
+    border-radius: 0.25rem;
+
+    .Close {
+      @include button();
+      position: absolute;
+      top: 0.25rem;
+      right: 0.25rem;
+    }
+  }
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.Display {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
