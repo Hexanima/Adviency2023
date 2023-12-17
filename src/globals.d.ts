@@ -3,4 +3,5 @@ declare interface Gift {
     name: string;
     quantity: number;
     image: string;
+    receptor: string;
 }

@@ -11,8 +11,13 @@ function Home() {
     <div className="Home">
       <h1>Regalos:</h1>
       <Input
-        onAdd={(name: string, quantity: number, image: string) => {
-          handleAdd(name, quantity, image);
+        onAdd={(
+          name: string,
+          quantity: number,
+          image: string,
+          receptor: string
+        ) => {
+          handleAdd(name, quantity, image, receptor);
           handleClose();
         }}
         onOpen={handleOpen}

@@ -1,7 +1,12 @@
 import { FormEvent, ReactNode, useRef } from "react";
 
 interface InputParams {
-  onAdd: (name: string, quantity: number, image: string) => void;
+  onAdd: (
+    name: string,
+    quantity: number,
+    image: string,
+    receptor: string
+  ) => void;
   onOpen: (component: ReactNode) => void;
 }
 
@@ -17,11 +22,17 @@ function Input({ onAdd, onOpen }: InputParams) {
 }
 
 interface InputFormParams {
-  onAdd: (name: string, quantity: number, image: string) => void;
+  onAdd: (
+    name: string,
+    quantity: number,
+    image: string,
+    receptor: string
+  ) => void;
 }
 
 function InputForm({ onAdd }: InputFormParams) {
   const nameRef = useRef<HTMLInputElement>(null);
+  const receptorRef = useRef<HTMLInputElement>(null);
   const quantityRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
 
@@ -38,13 +49,20 @@ function InputForm({ onAdd }: InputFormParams) {
         imageRef.current?.value ||
         "https://images.emojiterra.com/google/noto-emoji/unicode-15.1/color/512px/1f381.png";
 
-      onAdd(nameRef.current.value, Number(quantityRef.current.value), img);
+      let receptor = receptorRef.current?.value || "";
+      onAdd(
+        nameRef.current.value,
+        Number(quantityRef.current.value),
+        img,
+        receptor
+      );
     }
   }
 
   return (
     <form action="" className="InputForm" onSubmit={handleSubmit}>
       <input type="text" placeholder="Nombre del regalo" ref={nameRef} />
+      <input type="text" placeholder="Destinatario" ref={receptorRef} />
       <input type="text" placeholder="URL de la imagen" ref={imageRef} />
       <div className="mini">
         <input

@@ -2,7 +2,12 @@ import { createContext, useState, useEffect, ReactNode } from "react";
 
 interface GiftContextValues {
   list: Gift[];
-  handleAdd: (name: string, quantity: number, image: string) => void;
+  handleAdd: (
+    name: string,
+    quantity: number,
+    image: string,
+    receptor: string
+  ) => void;
   handleRemove: (id: number) => void;
   handleClear: () => void;
 }
@@ -27,7 +32,12 @@ export function GiftProvider({ children }: { children: ReactNode }) {
     }
   }, [list]);
 
-  function handleAdd(name: string, quantity: number, image: string) {
+  function handleAdd(
+    name: string,
+    quantity: number,
+    image: string,
+    receptor: string
+  ) {
     if (
       name.length > 0 &&
       quantity > 1 &&
@@ -40,6 +50,7 @@ export function GiftProvider({ children }: { children: ReactNode }) {
         name,
         quantity,
         image,
+        receptor
       });
       setList(newList);
     }
