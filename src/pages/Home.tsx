@@ -5,7 +5,7 @@ import useGift from "../hooks/useGift";
 import useModal from "../hooks/useModal";
 
 function Home() {
-  const { list, handleAdd, handleRemove, handleClear } = useGift();
+  const { list, handleAdd, handleRemove, handleClear, handleEdit } = useGift();
   const { handleOpen, handleClose } = useModal();
   return (
     <div className="Home">
@@ -23,7 +23,21 @@ function Home() {
         onOpen={handleOpen}
       />
       <div className="List">
-        <List list={list} onRemove={handleRemove} onOpen={handleOpen} />
+        <List
+          list={list}
+          onRemove={handleRemove}
+          onOpen={handleOpen}
+          onEdit={(
+            id: number,
+            name: string,
+            quantity: number,
+            image: string,
+            receptor: string
+          ) => {
+            handleEdit(id, name, quantity, image, receptor);
+            handleClose();
+          }}
+        />
         <Clearer
           onClear={() => {
             handleClear();

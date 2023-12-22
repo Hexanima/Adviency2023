@@ -110,6 +110,10 @@ $green: rgb(50, 150, 50);
         @include button($bgColor: $green);
       }
 
+      .Edit {
+        @include button($bgColor: #ecb213);
+      }
+
       .Delete {
         @include button();
       }

@@ -10,6 +10,13 @@ interface GiftContextValues {
   ) => void;
   handleRemove: (id: number) => void;
   handleClear: () => void;
+  handleEdit: (
+    id: number,
+    name: string,
+    quantity: number,
+    image: string,
+    receptor: string
+  ) => void;
 }
 
 export const GiftContext = createContext({} as GiftContextValues);
@@ -50,7 +57,7 @@ export function GiftProvider({ children }: { children: ReactNode }) {
         name,
         quantity,
         image,
-        receptor
+        receptor,
       });
       setList(newList);
     }
@@ -65,11 +72,28 @@ export function GiftProvider({ children }: { children: ReactNode }) {
     setList([]);
   }
 
+  function handleEdit(
+    id: number,
+    name: string,
+    quantity: number,
+    image: string,
+    receptor: string
+  ) {
+    const newList = list.map((gift) => {
+      if (gift.id == id) {
+        return { id, name, quantity, image, receptor };
+      }
+      return gift;
+    });
+    setList(newList);
+  }
+
   const contextValues: GiftContextValues = {
     list,
     handleAdd,
     handleRemove,
     handleClear,
+    handleEdit,
   };
 
   return (
