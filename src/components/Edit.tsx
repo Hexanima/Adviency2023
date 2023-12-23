@@ -3,13 +3,7 @@ import { generateName } from "../utils/gift.utils";
 
 interface EditParams {
   gift: Gift;
-  onEdit: (
-    id: number,
-    name: string,
-    quantity: number,
-    image: string,
-    receptor: string
-  ) => void;
+  onEdit: (editedGift: Gift) => void;
 }
 
 function Edit({ onEdit, gift }: EditParams) {
@@ -17,6 +11,7 @@ function Edit({ onEdit, gift }: EditParams) {
   const receptorRef = useRef<HTMLInputElement>(null);
   const quantityRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -27,18 +22,19 @@ function Edit({ onEdit, gift }: EditParams) {
       quantityRef?.current?.value?.length &&
       quantityRef?.current?.value?.length > 0
     ) {
-      let img =
+      let image =
         imageRef.current?.value ||
         "https://images.emojiterra.com/google/noto-emoji/unicode-15.1/color/512px/1f381.png";
 
       let receptor = receptorRef.current?.value || "";
-      onEdit(
-        gift.id,
-        nameRef.current.value,
-        Number(quantityRef.current.value),
-        img,
-        receptor
-      );
+      onEdit({
+        id: gift.id,
+        image,
+        receptor,
+        name: nameRef.current.value,
+        quantity: Number(quantityRef.current.value),
+        unitPrice: Number(priceRef.current?.value || 0),
+      });
     }
   }
   function handleRandom() {
@@ -51,7 +47,12 @@ function Edit({ onEdit, gift }: EditParams) {
   return (
     <form action="" className="InputForm" onSubmit={handleSubmit}>
       <div className="mini">
-        <input type="text" placeholder="Nombre del regalo" ref={nameRef} />
+        <input
+          type="text"
+          placeholder="Nombre del regalo"
+          ref={nameRef}
+          defaultValue={gift.name}
+        />
         <span onClick={handleRandom}>SORPRENDEME</span>
       </div>
       <input
@@ -65,6 +66,13 @@ function Edit({ onEdit, gift }: EditParams) {
         placeholder="URL de la imagen"
         ref={imageRef}
         defaultValue={gift.image}
+      />
+      <input
+        type="number"
+        placeholder="Precio unitario"
+        ref={priceRef}
+        defaultValue={gift.unitPrice}
+        step=".01"
       />
       <div className="mini">
         <input

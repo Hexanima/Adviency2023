@@ -3,21 +3,10 @@ import { ClearGifts, GetGifts, SaveGifts } from "../services/gift.service";
 
 interface GiftContextValues {
   list: Gift[];
-  handleAdd: (
-    name: string,
-    quantity: number,
-    image: string,
-    receptor: string
-  ) => void;
+  handleAdd: (newGift: Partial<Gift>) => void;
   handleRemove: (id: number) => void;
   handleClear: () => void;
-  handleEdit: (
-    id: number,
-    name: string,
-    quantity: number,
-    image: string,
-    receptor: string
-  ) => void;
+  handleEdit: (editedGift: Gift) => void;
   isLoaded: boolean;
 }
 
@@ -40,14 +29,17 @@ export function GiftProvider({ children }: { children: ReactNode }) {
     }
   }, [list]);
 
-  function handleAdd(
-    name: string,
-    quantity: number,
-    image: string,
-    receptor: string
-  ) {
+  function handleAdd({
+    name,
+    quantity,
+    image = "",
+    receptor = "",
+    unitPrice = 0,
+  }: Partial<Gift>) {
     if (
+      name &&
       name.length > 0 &&
+      quantity &&
       quantity >= 1 &&
       !list.some((gift) => gift.name == name)
     ) {
@@ -59,6 +51,7 @@ export function GiftProvider({ children }: { children: ReactNode }) {
         quantity,
         image,
         receptor,
+        unitPrice,
       });
       setList(newList);
     }
@@ -78,16 +71,10 @@ export function GiftProvider({ children }: { children: ReactNode }) {
     ClearGifts();
   }
 
-  function handleEdit(
-    id: number,
-    name: string,
-    quantity: number,
-    image: string,
-    receptor: string
-  ) {
+  function handleEdit(editedGift: Gift) {
     const newList = list.map((gift) => {
-      if (gift.id == id) {
-        return { id, name, quantity, image, receptor };
+      if (gift.id == editedGift.id) {
+        return editedGift;
       }
       return gift;
     });

@@ -4,4 +4,5 @@ declare interface Gift {
     quantity: number;
     image: string;
     receptor: string;
+    unitPrice: number;
 }

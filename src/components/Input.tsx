@@ -2,12 +2,7 @@ import { FormEvent, ReactNode, useRef } from "react";
 import { generateName } from "../utils/gift.utils";
 
 interface InputParams {
-  onAdd: (
-    name: string,
-    quantity: number,
-    image: string,
-    receptor: string
-  ) => void;
+  onAdd: (newGift: Partial<Gift>) => void;
   onOpen: (component: ReactNode) => void;
 }
 
@@ -23,12 +18,7 @@ function Input({ onAdd, onOpen }: InputParams) {
 }
 
 interface InputFormParams {
-  onAdd: (
-    name: string,
-    quantity: number,
-    image: string,
-    receptor: string
-  ) => void;
+  onAdd: (newGift: Partial<Gift>) => void;
 }
 
 function InputForm({ onAdd }: InputFormParams) {
@@ -36,6 +26,7 @@ function InputForm({ onAdd }: InputFormParams) {
   const receptorRef = useRef<HTMLInputElement>(null);
   const quantityRef = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -46,17 +37,18 @@ function InputForm({ onAdd }: InputFormParams) {
       quantityRef?.current?.value?.length &&
       quantityRef?.current?.value?.length > 0
     ) {
-      let img =
+      let image =
         imageRef.current?.value ||
         "https://images.emojiterra.com/google/noto-emoji/unicode-15.1/color/512px/1f381.png";
 
       let receptor = receptorRef.current?.value || "";
-      onAdd(
-        nameRef.current.value,
-        Number(quantityRef.current.value),
-        img,
-        receptor
-      );
+      onAdd({
+        name: nameRef.current.value,
+        quantity: Number(quantityRef.current.value),
+        image,
+        receptor,
+        unitPrice: Number(priceRef.current?.value || 0),
+      });
     }
   }
 
@@ -75,6 +67,7 @@ function InputForm({ onAdd }: InputFormParams) {
       </div>
       <input type="text" placeholder="Destinatario" ref={receptorRef} />
       <input type="text" placeholder="URL de la imagen" ref={imageRef} />
+      <input type="number" placeholder="Precio unitario" ref={priceRef} step=".01" />
       <div className="mini">
         <input
           type="number"

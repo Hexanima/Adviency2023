@@ -11,13 +11,8 @@ function Home() {
     <div className="Home">
       <h1>Regalos:</h1>
       <Input
-        onAdd={(
-          name: string,
-          quantity: number,
-          image: string,
-          receptor: string
-        ) => {
-          handleAdd(name, quantity, image, receptor);
+        onAdd={(newGift: Partial<Gift>) => {
+          handleAdd(newGift);
           handleClose();
         }}
         onOpen={handleOpen}
@@ -25,16 +20,13 @@ function Home() {
       <div className="List">
         <List
           list={list}
-          onRemove={handleRemove}
+          onRemove={(id: number) => {
+            handleRemove(id);
+            handleClose();
+          }}
           onOpen={handleOpen}
-          onEdit={(
-            id: number,
-            name: string,
-            quantity: number,
-            image: string,
-            receptor: string
-          ) => {
-            handleEdit(id, name, quantity, image, receptor);
+          onEdit={(editedGift: Gift) => {
+            handleEdit(editedGift);
             handleClose();
           }}
         />

@@ -6,13 +6,7 @@ interface ListParams {
   list: Gift[];
   onRemove: (id: number) => void;
   onOpen: (component: ReactNode) => void;
-  onEdit: (
-    id: number,
-    name: string,
-    quantity: number,
-    image: string,
-    receptor: string
-  ) => void;
+  onEdit: (editedGift: Gift) => void;
 }
 
 function List({ list, onRemove, onOpen, onEdit }: ListParams) {
