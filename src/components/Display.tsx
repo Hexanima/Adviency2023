@@ -6,8 +6,12 @@ function Display({ gift }: { gift: Gift }) {
       <span>{`${gift.quantity} ${
         gift.quantity == 1 ? "unidad" : "unidades"
       }`}</span>
-      <span>{`$${gift.unitPrice} c/u`}</span>
-      <span>{`$${gift.unitPrice * gift.quantity} total`}</span>
+      {gift.unitPrice > 0 && (
+        <>
+          <span>{`$${gift.unitPrice} c/u`}</span>
+          <span>{`$${gift.unitPrice * gift.quantity} total`}</span>
+        </>
+      )}
       <img src={gift.image} alt="" />
     </div>
   );
