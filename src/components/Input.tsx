@@ -1,4 +1,5 @@
 import { FormEvent, ReactNode, useRef } from "react";
+import { generateName } from "../utils/gift.utils";
 
 interface InputParams {
   onAdd: (
@@ -59,9 +60,19 @@ function InputForm({ onAdd }: InputFormParams) {
     }
   }
 
+  function handleRandom() {
+    if (nameRef?.current) {
+      const name = generateName();
+      nameRef.current.value = name;
+    }
+  }
+
   return (
     <form action="" className="InputForm" onSubmit={handleSubmit}>
-      <input type="text" placeholder="Nombre del regalo" ref={nameRef} />
+      <div className="mini">
+        <input type="text" placeholder="Nombre del regalo" ref={nameRef} />
+        <span onClick={handleRandom}>SORPRENDEME</span>
+      </div>
       <input type="text" placeholder="Destinatario" ref={receptorRef} />
       <input type="text" placeholder="URL de la imagen" ref={imageRef} />
       <div className="mini">

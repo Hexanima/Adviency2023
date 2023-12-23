@@ -9,4 +9,8 @@ async function SaveGifts(list: Gift[]) {
   await localStorage.setItem(listKey, JSON.stringify(list));
 }
 
-export { GetGifts, SaveGifts };
+async function ClearGifts() {
+  await localStorage.setItem(listKey, JSON.stringify([]));
+}
+
+export { GetGifts, SaveGifts, ClearGifts };

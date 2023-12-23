@@ -15,3 +15,4 @@
 13. Deben poderse editar los regalos
 14. Debe poder usarse con teclado (PENDIENTE)
 15. Debe poder consumir una API (preparar funciones asincronicas)
+16. El form debe contar con un boton que genere un nombre de regalo al azar

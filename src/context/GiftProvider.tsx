@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
-import { GetGifts, SaveGifts } from "../services/gift.service";
+import { ClearGifts, GetGifts, SaveGifts } from "../services/gift.service";
 
 interface GiftContextValues {
   list: Gift[];
@@ -48,7 +48,7 @@ export function GiftProvider({ children }: { children: ReactNode }) {
   ) {
     if (
       name.length > 0 &&
-      quantity > 1 &&
+      quantity >= 1 &&
       !list.some((gift) => gift.name == name)
     ) {
       const newList = [...list];
@@ -62,15 +62,20 @@ export function GiftProvider({ children }: { children: ReactNode }) {
       });
       setList(newList);
     }
+    console.log(list);
   }
 
   function handleRemove(id: number) {
     const newList = list.filter((gift) => gift.id != id);
     setList(newList);
+    if (newList.length == 0) {
+      ClearGifts();
+    }
   }
 
   function handleClear() {
     setList([]);
+    ClearGifts();
   }
 
   function handleEdit(

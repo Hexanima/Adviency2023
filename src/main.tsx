@@ -6,10 +6,10 @@ import { GiftProvider } from "./context/GiftProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ModalProvider>
-      <GiftProvider>
+    <GiftProvider>
+      <ModalProvider>
         <App />
-      </GiftProvider>
-    </ModalProvider>
+      </ModalProvider>
+    </GiftProvider>
   </React.StrictMode>
 );

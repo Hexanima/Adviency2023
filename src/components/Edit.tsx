@@ -1,4 +1,5 @@
 import { FormEvent, useRef } from "react";
+import { generateName } from "../utils/gift.utils";
 
 interface EditParams {
   gift: Gift;
@@ -40,15 +41,19 @@ function Edit({ onEdit, gift }: EditParams) {
       );
     }
   }
+  function handleRandom() {
+    if (nameRef?.current) {
+      const name = generateName();
+      nameRef.current.value = name;
+    }
+  }
 
   return (
     <form action="" className="InputForm" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Nombre del regalo"
-        ref={nameRef}
-        defaultValue={gift.name}
-      />
+      <div className="mini">
+        <input type="text" placeholder="Nombre del regalo" ref={nameRef} />
+        <span onClick={handleRandom}>SORPRENDEME</span>
+      </div>
       <input
         type="text"
         placeholder="Destinatario"
@@ -68,7 +73,7 @@ function Edit({ onEdit, gift }: EditParams) {
           ref={quantityRef}
           defaultValue={gift.quantity}
         />
-        <button>AGREGAR</button>
+        <button>MODIFICAR</button>
       </div>
     </form>
   );

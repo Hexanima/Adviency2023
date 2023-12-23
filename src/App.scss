@@ -73,7 +73,12 @@ $green: rgb(50, 150, 50);
     display: flex;
     gap: 1rem;
 
-    button {
+    input {
+      flex-grow: 1;
+    }
+
+    button,
+    span {
       @include button($bgColor: $green, $p: 0.5rem);
     }
   }
