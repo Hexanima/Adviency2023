@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
+import { GetGifts, SaveGifts } from "../services/gift.service";
 
 interface GiftContextValues {
   list: Gift[];
@@ -17,25 +18,25 @@ interface GiftContextValues {
     image: string,
     receptor: string
   ) => void;
+  isLoaded: boolean;
 }
 
 export const GiftContext = createContext({} as GiftContextValues);
 
 export function GiftProvider({ children }: { children: ReactNode }) {
   const [list, setList] = useState([] as Gift[]);
-  const listKey = "GiftList";
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const savedList = JSON.parse(localStorage.getItem(listKey) || "[]");
-
-    console.log(savedList);
-
-    setList(savedList);
+    GetGifts()
+      .then((result) => setList(result))
+      .catch(() => setList([]))
+      .finally(() => setIsLoaded(true));
   }, []);
 
   useEffect(() => {
     if (list.length > 0) {
-      localStorage.setItem(listKey, JSON.stringify(list));
+      SaveGifts(list);
     }
   }, [list]);
 
@@ -94,6 +95,7 @@ export function GiftProvider({ children }: { children: ReactNode }) {
     handleRemove,
     handleClear,
     handleEdit,
+    isLoaded,
   };
 
   return (

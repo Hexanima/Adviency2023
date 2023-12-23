@@ -13,3 +13,5 @@
 11. El form para agregar regalos debe estar en un modal, al cual se accede con un boton
 12. El form debe contar con un campo para destinatarios
 13. Deben poderse editar los regalos
+14. Debe poder usarse con teclado (PENDIENTE)
+15. Debe poder consumir una API (preparar funciones asincronicas)
