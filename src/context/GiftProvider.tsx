@@ -36,13 +36,7 @@ export function GiftProvider({ children }: { children: ReactNode }) {
     receptor = "",
     unitPrice = 0,
   }: Partial<Gift>) {
-    if (
-      name &&
-      name.length > 0 &&
-      quantity &&
-      quantity >= 1 &&
-      !list.some((gift) => gift.name == name)
-    ) {
+    if (name && name.length > 0 && quantity && quantity >= 1) {
       const newList = [...list];
       const id = list.length > 0 ? list[list.length - 1].id + 1 : 1;
       newList.push({
@@ -55,7 +49,6 @@ export function GiftProvider({ children }: { children: ReactNode }) {
       });
       setList(newList);
     }
-    console.log(list);
   }
 
   function handleRemove(id: number) {

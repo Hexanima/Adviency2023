@@ -7,9 +7,10 @@ interface ListParams {
   onRemove: (id: number) => void;
   onOpen: (component: ReactNode) => void;
   onEdit: (editedGift: Gift) => void;
+  onDupe: (dupedGift: Partial<Gift>) => void;
 }
 
-function List({ list, onRemove, onOpen, onEdit }: ListParams) {
+function List({ list, onRemove, onOpen, onEdit, onDupe }: ListParams) {
   return (
     <>
       {list.length > 0 ? (
@@ -17,13 +18,24 @@ function List({ list, onRemove, onOpen, onEdit }: ListParams) {
           {list.map((gift) => (
             <li key={`${gift.id}.${gift.name}`}>
               <p>{gift.name}</p>
-              <span>{"$" + gift.unitPrice + " c/u"}</span>
               <span>{"x" + gift.quantity}</span>
+              {gift.unitPrice > 0 && (
+                <>
+                  <span>{"$" + gift.unitPrice + " c/u"}</span>
+                  <span>{"$" + gift.unitPrice * gift.quantity}</span>
+                </>
+              )}
               <button
                 className="Open"
                 onClick={() => onOpen(<Display gift={gift} />)}
               >
                 O
+              </button>
+              <button
+                className="Dupe"
+                onClick={() => onOpen(<Edit gift={gift} onEdit={onDupe} />)}
+              >
+                D
               </button>
               <button
                 className="Edit"

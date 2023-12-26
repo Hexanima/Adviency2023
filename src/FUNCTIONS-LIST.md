@@ -18,3 +18,4 @@
 16. El form debe contar con un boton que genere un nombre de regalo al azar
 17. Debe poder agregarse un precio por unidad a los regalos
 18. Debe poderse ver el total de los precios
+19. Debe haber un boton para duplicar el regalo

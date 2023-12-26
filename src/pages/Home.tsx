@@ -1,6 +1,7 @@
 import Clearer from "../components/Clearer";
 import Input from "../components/Input";
 import List from "../components/List";
+import Visualize from "../components/Visualize";
 import useGift from "../hooks/useGift";
 import useModal from "../hooks/useModal";
 
@@ -29,21 +30,31 @@ function Home() {
             handleEdit(editedGift);
             handleClose();
           }}
+          onDupe={(dupedGift: Partial<Gift>) => {
+            handleAdd(dupedGift);
+            handleClose();
+          }}
         />
         {list.length > 0 && (
           <h5>
-            Total:{" "}
-            ${list.reduce((total, gift) => {
+            Total: $
+            {list.reduce((total, gift) => {
               return total + gift.unitPrice * gift.quantity;
             }, 0)}
           </h5>
         )}
-        <Clearer
-          onClear={() => {
-            handleClear();
-            handleClose();
-          }}
-        />
+
+        {list.length > 0 && (
+          <>
+            <Visualize list={list} onOpen={handleOpen} />
+            <Clearer
+              onClear={() => {
+                handleClear();
+                handleClose();
+              }}
+            />
+          </>
+        )}
       </div>
     </div>
   );
