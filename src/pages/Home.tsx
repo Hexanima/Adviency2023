@@ -30,6 +30,14 @@ function Home() {
             handleClose();
           }}
         />
+        {list.length > 0 && (
+          <h5>
+            Total:{" "}
+            ${list.reduce((total, gift) => {
+              return total + gift.unitPrice * gift.quantity;
+            }, 0)}
+          </h5>
+        )}
         <Clearer
           onClear={() => {
             handleClear();

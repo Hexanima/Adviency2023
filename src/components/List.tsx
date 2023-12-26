@@ -17,6 +17,7 @@ function List({ list, onRemove, onOpen, onEdit }: ListParams) {
           {list.map((gift) => (
             <li key={`${gift.id}.${gift.name}`}>
               <p>{gift.name}</p>
+              <span>{"$" + gift.unitPrice + " c/u"}</span>
               <span>{"x" + gift.quantity}</span>
               <button
                 className="Open"
