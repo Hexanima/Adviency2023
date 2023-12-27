@@ -32,7 +32,7 @@ Visualize.List = function ({ list }: { list: Gift[] }) {
   return (
     <>
       {list.length > 0 ? (
-        <div id="Visualizer">
+        <div className="Visualizer">
           <ul ref={listRef}>
             {list.map((gift) => (
               <li key={`${gift.id}.${gift.name}`}>

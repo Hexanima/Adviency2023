@@ -1,6 +1,7 @@
 import Clearer from "../components/Clearer";
 import Input from "../components/Input";
 import List from "../components/List";
+import MusicPlayer from "../components/MusicPlayer";
 import Visualize from "../components/Visualize";
 import useGift from "../hooks/useGift";
 import useModal from "../hooks/useModal";
@@ -56,6 +57,7 @@ function Home() {
           </>
         )}
       </div>
+      <MusicPlayer/>
     </div>
   );
 }

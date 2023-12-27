@@ -141,7 +141,7 @@ $green: rgb(50, 150, 50);
   @include button($p: 0.5rem, $bgColor: rgb(6, 93, 216));
 }
 
-#Visualizer {
+.Visualizer {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -215,4 +215,11 @@ $green: rgb(50, 150, 50);
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.MusicPlayer {
+  @include button($p: 0.5rem, $bgColor: rgb(233, 233, 233));
+  color: $red;
+  align-self: center;
+  border-radius: 50%;
 }
