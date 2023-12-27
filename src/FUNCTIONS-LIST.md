@@ -22,3 +22,4 @@
 20. Debe haber un boton para visualizar la lista de regalos sin botones ni precios
 21. Debe haber un boton de imprimir en la lista de visualizacion, el cual imprime tal lista
 22. Debe haber musica navideña la cual está desactivada por defecto y pueda desactivarse
+23. Deben haber copos de nieve decorativos
