@@ -21,7 +21,9 @@ function List({ list, onRemove, onOpen, onEdit, onDupe }: ListParams) {
               <span>{"x" + gift.quantity}</span>
               {gift.unitPrice > 0 && (
                 <>
-                  <span>{"$" + gift.unitPrice + " c/u"}</span>
+                  {gift.quantity > 1 && (
+                    <span>{"$" + gift.unitPrice + " c/u"}</span>
+                  )}
                   <span>{"$" + gift.unitPrice * gift.quantity}</span>
                 </>
               )}

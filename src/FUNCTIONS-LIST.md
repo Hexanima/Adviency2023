@@ -19,3 +19,4 @@
 17. Debe poder agregarse un precio por unidad a los regalos
 18. Debe poderse ver el total de los precios
 19. Debe haber un boton para duplicar el regalo
+20. Debe haber un boton para visualizar la lista de regalos sin botones ni precios
