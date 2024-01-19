@@ -1,4 +1,5 @@
 import "./App.scss";
+import Snowflakes from "./components/Snowflakes";
 import { ModalProvider } from "./context/ModalProvider";
 import useGift from "./hooks/useGift";
 import Home from "./pages/Home";
@@ -9,10 +10,8 @@ function App() {
     <>
       <div className="Background">
         {!isLoaded && <div className="loading"></div>}
-        <img
-          src="https://i.pinimg.com/originals/95/58/b9/9558b95660d31cdbfb19167da2a707f4.gif"
-          alt=""
-        />
+
+        <Snowflakes/>
       </div>
       {isLoaded && (
         <>
